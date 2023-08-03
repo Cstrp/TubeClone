@@ -1,0 +1,7 @@
+<div class="flex flex-row gap-1">
+  <h3 class="mt-[7px]" *ngIf="!userName; else name">Your name</h3>
+  <ng-template #name>
+    <h3 class="mt-[7px]">{{ userName.charAt(0).toUpperCase() + userName.slice(1) }}</h3></ng-template
+  >
+  <img routerLink="home/admin" class="hover:opacity-75 cursor-pointer" src="assets/icons/login.svg" alt="login" />
+</div>

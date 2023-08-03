@@ -1,0 +1,9 @@
+<div class="bg-gray-400 p-10" *ngIf="sortService.showSettings">
+  <div class="container mx-auto flex flex-row flex-wrap justify-center items-center gap-10">
+    <span class="opacity-40 font-bold">Sorting by:</span>
+    <app-sort-by-date-btn></app-sort-by-date-btn>
+    <app-sort-by-view-btn></app-sort-by-view-btn>
+    <span class="text-blue-600 font-medium">by word or sentence</span>
+    <app-sort-input (filterInput)="filterValue($event)"></app-sort-input>
+  </div>
+</div>

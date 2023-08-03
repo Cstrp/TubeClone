@@ -1,0 +1,43 @@
+<div class="container mx-auto flex flex-row mt-10 p-5 relative">
+  <button class="absolute flex bg-blue-400 left-[-20px] rounded-tl-md rounded-bl-md p-[8px]" routerLink="/home">
+    <i class="material-icons text-white">arrow_back_ios</i>
+  </button>
+  <div class="w-full">
+    <img
+      class="min-w-[750px] h-full rounded-sm"
+      [src]="detailVideo.snippet.thumbnails.high.url"
+      [alt]="detailVideo.snippet.title"
+    />
+  </div>
+  <div
+    class="flex flex-col justify-between bg-gray-300 p-5 min-h-[460px]"
+    [appDateColor]="detailVideo.snippet.publishedAt"
+  >
+    <div class="flex flex-row justify-between items-center p-10">
+      <h2 class="font-bold text-5xl">{{ detailVideo.snippet.title }}</h2>
+      <p class="text-2xl text-gray-500">{{ detailVideo.snippet.publishedAt | date: 'fullDate' }}</p>
+    </div>
+    <div class="flex flex-col gap-3 p10">
+      <h3 class="text-2xl font-bold">Description:</h3>
+      <p class="text-2xl text-justify">{{ detailVideo.snippet.description }}</p>
+    </div>
+    <div class="flex flex-row gap-[30px] items-center justify-center">
+      <p class="cursor-pointer flex flex-col-reverse items-center gap-1.5 transition hover:opacity-70">
+        {{ detailVideo.snippet.statistics.viewCount }}
+        <img src="assets/icons/viewed.svg" alt="viewed" />
+      </p>
+      <p class="cursor-pointer flex flex-col-reverse items-center gap-1.5 transition hover:opacity-70">
+        {{ detailVideo.snippet.statistics.likeCount }}
+        <img src="assets/icons/liked.svg" alt="liked" />
+      </p>
+      <p class="cursor-pointer flex flex-col-reverse items-center gap-1.5 transition hover:opacity-70">
+        {{ detailVideo.snippet.statistics.dislikeCount }}
+        <img src="assets/icons/dislike.svg" alt="dislike" />
+      </p>
+      <p class="cursor-pointer flex flex-col-reverse items-center gap-1.5 transition hover:opacity-70">
+        {{ detailVideo.snippet.statistics.commentCount }}
+        <img src="assets/icons/comments.svg" alt="comments" />
+      </p>
+    </div>
+  </div>
+</div>

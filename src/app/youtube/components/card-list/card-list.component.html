@@ -1,0 +1,22 @@
+<div
+  *ngFor="let item of video"
+  class="bg-gray-200 max-w-sm flex flex-col p-[30px] items-center gap-7 rounded-md transition ease-in hover:scale-95"
+  [appDateColor]="item.snippet.publishedAt"
+>
+  <div class="flex flex-col md:align-middle md:text-center p-[20px] gap-[20px]">
+    <img [src]="item.snippet.thumbnails.default.url" [alt]="item.snippet.title" class="w-fit" />
+    <p class="text-3xl">{{ item.snippet.title }}</p>
+  </div>
+  <div>
+    <app-cards-statistics class="w-full" [statistics]="item.snippet.statistics"></app-cards-statistics>
+  </div>
+  <div class="font-bold mt-10 flex flex-row justify-center">
+    <button
+      (click)="detail()"
+      class="rounded-md shadow-lg shadow-indigo-500/50 px-[25px] py-[7px] text-white bg-blue-500 px-10 py-2 rounded-md transition ease-in hover:opacity-70 active:scale-90"
+    >
+      More...
+    </button>
+    <router-outlet></router-outlet>
+  </div>
+</div>

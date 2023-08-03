@@ -1,0 +1,19 @@
+<div class="container mx-auto items-center gap-20 mt-20" *ngIf="video">
+  <div
+    class="flex flex-col justify-between gap-5 bg-gray-400 p-[30px] items-center rounded-md transition ease-in hover:scale-95"
+    [appColorOfPublishedDate]="video.snippet.publishedAt"
+  >
+    <div class="flex flex-col gap-7 max-w-sm h-[450px]">
+      <img class="rounded-sm" [src]="video.snippet.thumbnails.high.url" [alt]="video.snippet.title" />
+      <p class="text-2xl">{{ video.snippet.title | titlecase }}</p>
+    </div>
+    <div class="font-bold mt-10 flex flex-row justify-center">
+      <button
+        class="rounded-md shadow-lg shadow-indigo-500/50 px-[25px] py-[7px] text-white bg-blue-500 px-10 py-2 rounded-md transition ease-in hover:opacity-70 active:scale-90"
+        [routerLink]="['/home/result', video.id]"
+      >
+        More...
+      </button>
+    </div>
+  </div>
+</div>

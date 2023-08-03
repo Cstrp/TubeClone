@@ -1,0 +1,88 @@
+<div class="container mx-auto flex justify-center mt-40">
+  <div class="p-4 w-full h-auto max-w-lg bg-gray-400 rounded-md border shadow-md sm:p-6 md:p-8 dark:border-gray-900">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
+      <h3 class="text-xl font-medium text-gray-900">Registration</h3>
+
+      <div>
+        <label class="mat-form-field-label" for="text">Username</label>
+        <input
+          type="text"
+          id="text"
+          formControlName="username"
+          class="text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [ngClass]="{'border-red-600': f['username'].touched && f['username'].errors}"
+          placeholder="Type your name here..."
+        />
+        <div *ngIf="f['username'].touched && f['username'].invalid" class="text-red-600">
+          <div *ngIf="f['username'].errors?.['required']">Username is required</div>
+          <div *ngIf="f['username'].errors?.['minlength']">Username must be at least 3 characters</div>
+          <div *ngIf="f['username'].errors?.['maxlength']">Username must not exceed 16 characters</div>
+        </div>
+      </div>
+
+      <div>
+        <label class="mat-form-field-label">Password</label>
+        <div class="grid grid-cols-[1fr_45px] items-center">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            class="text-gray-900 border border-gray-300 text-sm rounded-bl-lg rounded-tl-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            [ngClass]="{'border-red-600': f['password'].touched && f['password'].errors}"
+            placeholder="Type your password here..."
+          />
+          <div
+            class="flex items-center border border-gray-300 text-center bg-gray-500 h-full rounded-br-lg rounded-tr-lg"
+          >
+            <span class="w-full">
+              <i
+                class="fa fa-eye-slash"
+                [ngClass]="{
+                  'fa-eye-slash': !showPassword,
+                  'fa-eye': showPassword
+                }"
+                (click)="showPassword = !showPassword"
+              ></i>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="f['password'].touched && f['password'].dirty" class="text-red-600">
+          <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+          <div *ngIf="f['password'].errors?.['pattern']">
+            Password is not valid. Minimum six characters, at least one uppercase letter, one lowercase letter, one
+            number and one special character.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3 h-5 mt-3">
+        <div class="flex flex-row gap-5">
+          <input
+            type="checkbox"
+            id="agree"
+            formControlName="acceptTerms"
+            class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+          />
+          <label for="agree" class="text-sm font-medium text-gray-900">I have read and agree to the Terms</label>
+        </div>
+        <div *ngIf="f['acceptTerms'] && f['acceptTerms'].errors" class="text-red-600">Accept Terms is required</div>
+      </div>
+
+      <div class="flex justify-between pt-10">
+        <button
+          type="submit"
+          class="bg-blue-500 min-w-[123px] p-2.5 rounded-md text-white border-0 disabled:bg-gray-700 transition-opacity duration-300 hover:opacity-75"
+          [disabled]="form.invalid"
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          (click)="onReset()"
+          class="bg-blue-500 min-w-[123px] p-2.5 rounded-md text-white border-0 disabled:bg-gray-700 transition-opacity duration-300 hover:opacity-75"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

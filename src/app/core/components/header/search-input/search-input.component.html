@@ -1,0 +1,18 @@
+<form class="md:min-w-[600px] grid grid-cols-[1fr_80px] items-center" [formGroup]="form">
+  <input
+    class="border-4 border-solid placeholder-gray-600 p-0.5"
+    formControlName="value"
+    type="text"
+    #input
+    placeholder="What are you want to find out?"
+  />
+
+  <button
+    class="bg-blue-500 w-full p-1.5 rounded-r-lg text-white border-0 disabled:bg-gray-700 transition-opacity duration-300 hover:opacity-75"
+    [disabled]="form.invalid"
+    (click)="searchService.searchHandler(input.value)"
+    routerLink="home/result"
+  >
+    search
+  </button>
+</form>

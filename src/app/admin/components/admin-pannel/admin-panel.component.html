@@ -1,0 +1,98 @@
+<div class="container mx-auto flex justify-center mt-20">
+  <div class="p-4 w-full h-auto max-w-lg bg-gray-200 rounded-md border shadow-md sm:p-6 md:p-8 dark:border-gray-900">
+    <legend>Create new card</legend>
+    <form [formGroup]="cardForm" (ngSubmit)="save()">
+      <div class="flex flex-col mb-3 mt-5 gap-3">
+        <label for="title" class="mat-form-field-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Please enter a title"
+          [ngClass]="{'border-red-600': f['title'].touched && f['title'].errors}"
+          class="text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+        <div *ngIf="f['title'].touched && f['title'].invalid" class="text-red-600">
+          <div *ngIf="f['title'].errors?.['required']">Please enter a title</div>
+          <div *ngIf="f['title'].errors?.['minlength']">The title is too short</div>
+          <div *ngIf="f['title'].errors?.['maxlength']">The title is too long</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-3 gap-3">
+        <label for="description" class="mat-form-field-label">Description</label>
+        <input
+          type="text"
+          id="description"
+          formControlName="description"
+          class="text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+        <div *ngIf="f['description'].touched && f['description'].invalid" class="text-red-600">
+          <div *ngIf="f['description'].errors?.['required']">Maximum number of characters for description - 225</div>
+          <div *ngIf="f['description'].errors?.['maxlength']">The description is too long</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-3 gap-3">
+        <label for="linkForImage" class="mat-form-field-label">Link for image</label>
+        <input
+          type="text"
+          id="linkForImage"
+          formControlName="linkForImage"
+          placeholder="Please enter a link to the image"
+          [ngClass]="{'border-red-600': f['linkForImage'].touched && f['linkForImage'].errors}"
+          class="text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+        <div *ngIf="f['linkForImage'].touched && f['linkForImage'].invalid" class="text-red-600">
+          <div *ngIf="f['linkForImage'].errors?.['required']">Please enter a link to the image</div>
+          <div *ngIf="f['linkForImage'].errors?.['pattern']">The image link is invalid</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-3 gap-3">
+        <label for="linkForVideo" class="mat-form-field-label">Link for video</label>
+        <input
+          type="text"
+          id="linkForVideo"
+          formControlName="linkForVideo"
+          placeholder="Please enter a link to the video"
+          [ngClass]="{'border-red-600': f['linkForVideo'].touched && f['linkForVideo'].errors}"
+          class="text-gray-900 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+        <div *ngIf="f['linkForVideo'].touched && f['linkForVideo'].invalid" class="text-red-600">
+          <div *ngIf="f['linkForVideo'].errors?.['required']">Please enter a link to the video</div>
+          <div *ngIf="f['linkForVideo'].errors?.['pattern']">The video link is invalid</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-3 gap-3">
+        <mat-label class="mat-form-field-label">Creation date </mat-label>
+        <div class="grid grid-cols-[1fr_30px]">
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [max]="today"
+            #pickerInput
+            readonly
+            formControlName="creationDate"
+            class="text-gray-900 border border-gray-300 text-sm rounded-tl-lg rounded-bl-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker" class="bg-gray-400 rounded-br-lg rounded-tr-lg text-center">
+            <mat-datepicker #picker></mat-datepicker
+          ></mat-datepicker-toggle>
+        </div>
+        <div *ngIf="f['creationDate'].touched && f['creationDate'].invalid" class="text-red-500">
+          <!--    не забыть добавить ошибку, и исправить дату дав возможность ввода!      -->
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="cardForm.invalid"
+        class="bg-blue-500 mt-5 pr-10 pl-10 pt-3 pb-3 rounded-md text-white border-0 disabled:bg-gray-700 transition-opacity duration-300 hover:opacity-75"
+      >
+        Create card
+      </button>
+    </form>
+  </div>
+</div>
